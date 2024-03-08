@@ -28,7 +28,7 @@ if uploaded_file:
     with open(image_path, "wb") as f:
         f.write(uploaded_file.getvalue())
 
-    detect_command = f"yolo task=detect mode=predict model={model_path} conf=0.5 source='{image_path}' save_txt=true save_conf=true"
+    detect_command = f"yolo task=classify mode=predict model={model_path} conf=0.5 source='{image_path}' save_txt=true save_conf=true"
     subprocess.run(detect_command, shell=True)
     output_image_path = os.path.join(output_dir, "test_image.jpg")
     if os.path.exists(output_image_path):
